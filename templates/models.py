@@ -11,10 +11,22 @@ class UserGroup(models.Model):
         blank=True,
         null=True
     )
-    receivers = ArrayField(ArrayField(models.CharField(max_length=255)))
+    receivers = ArrayField(ArrayField(models.CharField(max_length=255)), blank=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.owner}"
 
 
-class Template(models.Model):
+class NotificationTemplate(models.Model):
     name = models.CharField(max_length=40)
     text = models.TextField(max_length=120)
-    group = models.OneToOneField('templates.UserGroup', on_delete=models.PROTECT, related_name='templates')
+    group = models.ForeignKey(
+        to='templates.UserGroup',
+        on_delete=models.PROTECT,
+        blank=False,
+        null=False,
+        related_name='group_templates'
+    )
+
+    def __str__(self):
+        return f"{self.name} - {self.group.name}"
