@@ -1,0 +1,40 @@
+User:
+
+	fields:
+		user_id - BigAutoField
+		user_fullname - CharField
+		user_email (as login) - EmailField
+		user_phone_number - IntegeerField
+		user_groups - FK
+		user_recievers - FK
+		
+	
+	
+	responsibilities:
+		can register
+		can approve account with email confirmation
+		can create a template of notification
+		can create a group
+		can change group fields
+		can delete group
+		can add receivers to group manually
+		can add receivers to group with .xls or .csv
+		can send a notification to a group
+		
+
+Group:
+
+	fields:
+		group_id - BigAutoField
+		group_user_owner - 121 to user
+		group_name - CharField
+		receivers - FK
+		
+	
+Receivers (User):
+	
+	fields:
+		id - BigAutoField
+		fullname - CharField
+		email
+		phone_number

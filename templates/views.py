@@ -54,6 +54,5 @@ class NotificationTemplateAPIView(RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         obj = get_object_or_404(NotificationTemplate, pk=self.kwargs['id'])
-        print(obj)
         self.check_object_permissions(self.request, obj)
         return obj
